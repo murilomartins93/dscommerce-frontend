@@ -1,7 +1,6 @@
 import "./styles.css";
 import HeaderClient from "../../components/HeaderClient";
-import ButtonPrimary from "../../components/ButtonPrimary";
-import ButtonSecondary from "../../components/ButtonSecondary";
+import Button from "../../components/Button";
 import ProductDetailsCard from "../../components/ProductDetailsCard";
 import { ProductDTO } from "../../models/product";
 
@@ -30,8 +29,8 @@ function ProductDetails() {
             <ProductDetailsCard product={product} />
           </div>
           <div className="dsc-btn-page-container">
-            <ButtonPrimary />
-            <ButtonSecondary />
+            <Button text="Comprar" />
+            <Button text="Início" />
           </div>
         </section>
       </main>
