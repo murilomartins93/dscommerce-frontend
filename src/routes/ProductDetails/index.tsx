@@ -1,30 +1,24 @@
 import "./styles.css";
 import Button from "../../components/Button";
 import ProductDetailsCard from "../../components/ProductDetailsCard";
-import { ProductDTO } from "../../models/product";
-
-const product: ProductDTO = {
-  id: 2,
-  name: "Smart TV",
-  description:
-    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis, deleniti animi ullam quod nam quia.",
-  imgUrl:
-    "https://raw.githubusercontent.com/devsuperior/dscatalog-resources/master/backend/img/2-big.jpg",
-  price: 2500.99,
-  categories: [
-    { id: 2, name: "Eletrônicos" },
-    { id: 3, name: "Computadores" },
-    { id: 4, name: "Importados" },
-  ],
-};
+import * as productService from "../../services/product-service";
+import { useParams } from "react-router-dom";
 
 function ProductDetails() {
+
+  const params = useParams();
+  const product = productService.findById(Number(params.productId));
+
   return (
     <main>
       <section id="product-details-section" className="dsc-container">
-        <div className="dsc-card dsc-mb20">
-          <ProductDetailsCard product={product} />
-        </div>
+        {
+          product && 
+          <div className="dsc-card dsc-mb20">
+            <ProductDetailsCard product={product} />
+          </div>
+          
+        }
         <div className="dsc-btn-page-container">
           <Button text="Comprar" />
           <Button text="Início" />
