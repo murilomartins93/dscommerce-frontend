@@ -1,5 +1,4 @@
 import "./styles.css";
-import HeaderClient from "../../components/HeaderClient";
 import SearchBar from "../../components/SearchBar";
 import CatalogCard from "../../components/CatalogCard";
 import Button from "../../components/Button";
@@ -22,29 +21,26 @@ const product: ProductDTO = {
 
 function Catalog() {
   return (
-    <>
-      <HeaderClient />
-      <main>
-        <section id="catolog-section" className="dsc-container">
-          <SearchBar />
-          <div className="dsc-catalog-cards dsc-mt20 dsc-mb20">
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-            <CatalogCard product={product} />
-          </div>
-          <Button text="Carregar Mais" />
-        </section>
-      </main>
-    </>
+    <main>
+      <section id="catolog-section" className="dsc-container">
+        <SearchBar />
+        <div className="dsc-catalog-cards dsc-mt20 dsc-mb20">
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+          <CatalogCard product={product} />
+        </div>
+        <Button text="Carregar Mais" />
+      </section>
+    </main>
   );
 }
 

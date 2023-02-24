@@ -1,5 +1,4 @@
 import "./styles.css";
-import HeaderClient from "../../components/HeaderClient";
 import Button from "../../components/Button";
 import ProductDetailsCard from "../../components/ProductDetailsCard";
 import { ProductDTO } from "../../models/product";
@@ -21,20 +20,17 @@ const product: ProductDTO = {
 
 function ProductDetails() {
   return (
-    <>
-      <HeaderClient />
-      <main>
-        <section id="product-details-section" className="dsc-container">
-          <div className="dsc-card dsc-mb20">
-            <ProductDetailsCard product={product} />
-          </div>
-          <div className="dsc-btn-page-container">
-            <Button text="Comprar" />
-            <Button text="Início" />
-          </div>
-        </section>
-      </main>
-    </>
+    <main>
+      <section id="product-details-section" className="dsc-container">
+        <div className="dsc-card dsc-mb20">
+          <ProductDetailsCard product={product} />
+        </div>
+        <div className="dsc-btn-page-container">
+          <Button text="Comprar" />
+          <Button text="Início" />
+        </div>
+      </section>
+    </main>
   );
 }
 
