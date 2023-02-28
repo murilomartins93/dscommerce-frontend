@@ -1,10 +1,10 @@
 import "./styles.css";
 import Button from "../../components/Button";
 import ProductDetailsCard from "../../components/ProductDetailsCard";
+import * as productService from "../../services/product-service";
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ProductDTO } from "../../models/product";
-import axios from "axios";
 
 function ProductDetails() {
   const params = useParams();
@@ -12,12 +12,9 @@ function ProductDetails() {
   const [product, setProduct] = useState<ProductDTO>();
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/products/${params.productId}`).then((response) => {
-    //console.log(response.data);
+    productService.findById(Number(params.productId)).then((response) => {
       setProduct(response.data);
     });
-    // product-service data
-    // const prod = productService.findById(Number(params.productId));
   }, []);
 
   return (
