@@ -20,14 +20,8 @@ const item2: OrderItemDTO = new OrderItemDTO(
 );
 
 function Cart() {
-  const cart1: OrderDTO = new OrderDTO();
-  cart1.items.push(item1, item2);
 
   const [cart, setCart] = useState<OrderDTO>(cartService.getCart);
-
-  useEffect(() => {
-    setCart(cart1);
-  }, []);
 
   return (
     <main>
