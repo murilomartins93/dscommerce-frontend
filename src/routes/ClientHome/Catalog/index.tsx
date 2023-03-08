@@ -1,10 +1,10 @@
 import "./styles.css";
-import SearchBar from "../../components/SearchBar";
-import CatalogCard from "../../components/CatalogCard";
-import Button from "../../components/Button";
-import * as productService from "../../services/product-service";
+import SearchBar from "../../../components/SearchBar";
+import CatalogCard from "../../../components/CatalogCard";
+import Button from "../../../components/Button";
+import * as productService from "../../../services/product-service";
 import { useEffect, useState } from "react";
-import { ProductDTO } from "../../models/product";
+import { ProductDTO } from "../../../models/product";
 import { useNavigate } from "react-router-dom";
 
 function Catalog() {

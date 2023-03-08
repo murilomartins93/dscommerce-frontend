@@ -1,10 +1,10 @@
 import "./styles.css";
-import Button from "../../components/Button";
-import ProductDetailsCard from "../../components/ProductDetailsCard";
-import * as productService from "../../services/product-service";
+import Button from "../../../components/Button";
+import ProductDetailsCard from "../../../components/ProductDetailsCard";
+import * as productService from "../../../services/product-service";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ProductDTO } from "../../models/product";
+import { ProductDTO } from "../../../models/product";
 
 function ProductDetails() {
   const params = useParams();
