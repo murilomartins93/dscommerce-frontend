@@ -2,14 +2,16 @@ import "./styles.css";
 import Button from "../../../components/Button";
 import ProductDetailsCard from "../../../components/ProductDetailsCard";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductDTO } from "../../../models/product";
 import * as productService from "../../../services/product-service";
 import * as cartService from "../../../services/cart-service";
+import { ContextCartCount } from "../../../utils/context-cart";
 
 function ProductDetails() {
   const params = useParams();
   const navigate = useNavigate();
+  const { setContextCartCount } = useContext(ContextCartCount);
 
   const [product, setProduct] = useState<ProductDTO>();
 
@@ -26,8 +28,9 @@ function ProductDetails() {
   }, []);
 
   function handleBuyClick() {
-    if(product){
+    if (product) {
       cartService.addProduct(product);
+      setContextCartCount(cartService.getCart().items.length);
       navigate("/cart");
     }
   }
@@ -35,22 +38,11 @@ function ProductDetails() {
   return (
     <main>
       <section id="product-details-section" className="dsc-container">
-        {
-          product && (
-            <div className="dsc-card dsc-mb20">
-              <ProductDetailsCard product={product} />
-            </div>
-          )
-          /*  or
-          product ? (
-            <div className="dsc-card dsc-mb20">
-              <ProductDetailsCard product={product} />
-            </div>
-          ) : (
-            <h1>Código inválido</h1>
-          )
-        */
-        }
+        {product && (
+          <div className="dsc-card dsc-mb20">
+            <ProductDetailsCard product={product} />
+          </div>
+        )}
         <div className="dsc-btn-page-container">
           <div onClick={handleBuyClick}>
             <Button text="Comprar" />
