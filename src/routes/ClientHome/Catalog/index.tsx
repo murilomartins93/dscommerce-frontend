@@ -13,6 +13,8 @@ type QueryParams = {
 };
 
 function Catalog() {
+  const [isLastPage, setIsLastPage] = useState(false);
+
   const [products, setProducts] = useState<ProductDTO[]>([]);
 
   const [queryParams, setQueryParams] = useState<QueryParams>({
@@ -26,13 +28,20 @@ function Catalog() {
     productService
       .findPageRequest(queryParams.page, queryParams.name)
       .then((response) => {
-        setProducts(response.data.content);
+        const nextPage = response.data.content;
+        setProducts(products.concat(nextPage));
+        setIsLastPage(response.data.last);
       })
       .catch(() => navigate("/"));
   }, [queryParams]);
 
   function handleSearch(searchText: string) {
-    setQueryParams({ ...queryParams, name: searchText });
+    setProducts([]);
+    setQueryParams({ ...queryParams, page: 0, name: searchText });
+  }
+
+  function handleNextPageClick() {
+    setQueryParams({ ...queryParams, page: queryParams.page + 1 });
   }
 
   return (
@@ -44,7 +53,12 @@ function Catalog() {
             <CatalogCard key={product.id} product={product} />
           ))}
         </div>
-        <Button text="Carregar Mais" />
+        {
+          !isLastPage && 
+          <div onClick={handleNextPageClick}>
+            <Button text="Carregar Mais" />
+          </div>
+        }
       </section>
     </main>
   );

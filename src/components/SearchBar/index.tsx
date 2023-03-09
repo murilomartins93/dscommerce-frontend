@@ -34,7 +34,7 @@ function SearchBar({ onSearch }: Props) {
         value={text}
         onChange={handleInputChange}
       />
-      <button onClick={handleResetClick}>🗙</button>
+      <button className="dsc-search-bar-reset-btn" onClick={handleResetClick}>🗙</button>
     </form>
   );
 }
