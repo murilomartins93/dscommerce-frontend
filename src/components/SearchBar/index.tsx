@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./styles.css";
 
 type Props = {
-  onSearch?: Function;
+  onSearch: Function;
 };
 
 function SearchBar({ onSearch }: Props) {
@@ -15,9 +15,7 @@ function SearchBar({ onSearch }: Props) {
 
   function handleFormSubmit(event: any) {
     event.preventDefault();
-    if (onSearch) {
-      onSearch(text);
-    }
+    onSearch(text);
   }
   
   function handleResetClick() {
