@@ -9,21 +9,26 @@ import { useNavigate } from "react-router-dom";
 
 function Catalog() {
   const [products, setProducts] = useState<ProductDTO[]>([]);
+  const [ productName, setproductName ] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
     productService
-      .findPageRequest(0, "")
+      .findPageRequest(0, productName)
       .then((response) => {
         setProducts(response.data.content);
       })
       .catch(() => navigate("/"));
-  }, []);
+  }, [productName]);
+
+  function handleSearch(searchText: string) {
+    setproductName(searchText);
+  }
 
   return (
     <main>
       <section id="catolog-section" className="dsc-container">
-        <SearchBar />
+        <SearchBar onSearch={handleSearch} />
         <div className="dsc-catalog-cards dsc-mt20 dsc-mb20">
           {products.map((product) => (
             <CatalogCard key={product.id} product={product} />
