@@ -7,22 +7,32 @@ import { useEffect, useState } from "react";
 import { ProductDTO } from "../../../models/product";
 import { useNavigate } from "react-router-dom";
 
+type QueryParams = {
+  page: number;
+  name: string;
+};
+
 function Catalog() {
   const [products, setProducts] = useState<ProductDTO[]>([]);
-  const [ productName, setproductName ] = useState("");
+
+  const [queryParams, setQueryParams] = useState<QueryParams>({
+    page: 0,
+    name: "",
+  });
+
   const navigate = useNavigate();
 
   useEffect(() => {
     productService
-      .findPageRequest(0, productName)
+      .findPageRequest(queryParams.page, queryParams.name)
       .then((response) => {
         setProducts(response.data.content);
       })
       .catch(() => navigate("/"));
-  }, [productName]);
+  }, [queryParams]);
 
   function handleSearch(searchText: string) {
-    setproductName(searchText);
+    setQueryParams({ ...queryParams, name: searchText });
   }
 
   return (
