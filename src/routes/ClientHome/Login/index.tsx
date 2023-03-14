@@ -14,7 +14,8 @@ function Login() {
     authService
       .loginRequest(formData)
       .then((response) => {
-        console.log(response.data);
+        const token = response.data.access_token;
+        authService.saveAccessToken(token);
       })
       .catch((error) => {
         console.log("Erro no login", error);
