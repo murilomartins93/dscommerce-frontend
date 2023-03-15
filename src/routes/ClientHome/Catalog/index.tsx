@@ -6,6 +6,7 @@ import * as productService from "../../../services/product-service";
 import { useEffect, useState } from "react";
 import { ProductDTO } from "../../../models/product";
 import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../../../services/auth-service";
 
 type QueryParams = {
   page: number;
@@ -25,6 +26,7 @@ function Catalog() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("AUTENTICADO", isAuthenticated());
     productService
       .findPageRequest(queryParams.page, queryParams.name)
       .then((response) => {
