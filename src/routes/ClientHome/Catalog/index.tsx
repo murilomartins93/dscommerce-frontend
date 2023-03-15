@@ -54,10 +54,10 @@ function Catalog() {
           ))}
         </div>
         {
-          !isLastPage && 
+          !isLastPage ? 
           <div onClick={handleNextPageClick}>
             <Button text="Carregar Mais" />
-          </div>
+          </div> : null 
         }
       </section>
     </main>

@@ -9,9 +9,9 @@ function CartIcon() {
   return (
     <>
       <img src={cartImg} alt="Carrinho de compras" />
-      {contextCartCount > 0 && (
+      {contextCartCount > 0 ? (
         <div className="dsc-cart-count">{contextCartCount}</div>
-      )}
+      ): null}
     </>
   );
 }

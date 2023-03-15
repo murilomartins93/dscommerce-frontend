@@ -15,11 +15,11 @@ function AdminHome() {
   return (
     <main>
       <section id="admin-home-section" className="dsc-container">
-        {user && (
+        {user ? (
           <h2 className="dsc-section-title dsc-mb20">
             Bem-vindo à área administrativa {user.name}
           </h2>
-        )}
+        ) : null}
       </section>
     </main>
   );

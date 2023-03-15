@@ -38,11 +38,11 @@ function ProductDetails() {
   return (
     <main>
       <section id="product-details-section" className="dsc-container">
-        {product && (
+        {product ? (
           <div className="dsc-card dsc-mb20">
             <ProductDetailsCard product={product} />
           </div>
-        )}
+        ) : null}
         <div className="dsc-btn-page-container">
           <div onClick={handleBuyClick}>
             <Button text="Comprar" />
