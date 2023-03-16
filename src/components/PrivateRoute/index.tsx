@@ -7,7 +7,7 @@ type Props = {
   roles?: RoleEnum[];
 };
 
-function PrivateRoute({ children, roles = [] }: Props) {
+export function PrivateRoute({ children, roles = [] }: Props) {
   if (!authService.isAuthenticated()) {
     return <Navigate to="/login" />;
   }
@@ -16,5 +16,3 @@ function PrivateRoute({ children, roles = [] }: Props) {
   }
   return children;
 }
-
-export default PrivateRoute;
