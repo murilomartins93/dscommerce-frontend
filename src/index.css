@@ -98,11 +98,6 @@ nav h1 {
   font-size: 16px;
 }
 
-nav a {
-  font-size: 14px;
-  font-weight: 700;
-}
-
 .dsc-navbar-right {
   display: flex;
   align-items: center;
@@ -221,11 +216,11 @@ nav a {
   color: var(--dsc-color-font-primary);
   border-radius: 4px;
   border: 1px solid var(--dsc-color-card-border);  
-  caret-color: auto;
 }
 
 .dsc-form-control:focus {
   outline: none;
+  caret-color: auto;
 }
 
 .dsc-form-control::placeholder {

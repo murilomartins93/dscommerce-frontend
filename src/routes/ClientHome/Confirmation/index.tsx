@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { OrderDTO } from "../../../models/order";
 import * as orderService from "../../../services/order-service";
 
-export default function Confirmation() {
+function Confirmation() {
   const params = useParams();
   const [order, setOrder] = useState<OrderDTO>();
 
@@ -55,3 +55,5 @@ export default function Confirmation() {
     </main>
   );
 }
+
+export default Confirmation;

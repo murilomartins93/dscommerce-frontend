@@ -8,6 +8,8 @@ import Catalog from "./routes/ClientHome/Catalog";
 import Confirmation from "./routes/ClientHome/Confirmation";
 import Login from "./routes/ClientHome/Login";
 import ProductDetails from "./routes/ClientHome/ProductDetails";
+import ProductForm from "./routes/Admin/ProductForm";
+import ProductListing from "./routes/Admin/ProductListing";
 import { AccessTokenPayloadDTO } from "./models/auth";
 import { ContextCartCount } from "./utils/context-cart";
 import { ContextToken } from "./utils/context-token";
@@ -43,8 +45,11 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="confirmation/:orderId" element={<PrivateRoute><Confirmation /></PrivateRoute>}/>
             </Route>
-            <Route path="/admin" element={<PrivateRoute roles={["ROLE_ADMIN"]}><Admin /></PrivateRoute>} >
-              <Route index element={<AdminHome />} />
+            <Route path="/admin/" element={<PrivateRoute roles={["ROLE_ADMIN"]}><Admin /></PrivateRoute>} >
+              <Route index element={<Navigate to="/admin/home" />} />
+              <Route path="home" element={<AdminHome />} />
+              <Route path="products" element={<ProductListing />} />
+              <Route path="products/:productId" element={<ProductForm />} />
             </Route>
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
