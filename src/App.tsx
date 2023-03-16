@@ -5,6 +5,7 @@ import AdminHome from "./routes/Admin/AdminHome";
 import ClientHome from "./routes/ClientHome";
 import Cart from "./routes/ClientHome/Cart";
 import Catalog from "./routes/ClientHome/Catalog";
+import Confirmation from "./routes/ClientHome/Confirmation";
 import Login from "./routes/ClientHome/Login";
 import ProductDetails from "./routes/ClientHome/ProductDetails";
 import { AccessTokenPayloadDTO } from "./models/auth";
@@ -40,6 +41,7 @@ function App() {
               <Route path="product-details/:productId" element={<ProductDetails />} />
               <Route path="cart" element={<Cart />} />
               <Route path="login" element={<Login />} />
+              <Route path="confirmation/:orderId" element={<Confirmation />}/>
             </Route>
             <Route path="/admin" element={<PrivateRoute roles={["ROLE_ADMIN"]}><Admin /></PrivateRoute>} >
               <Route index element={<AdminHome />} />
