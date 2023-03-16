@@ -26,6 +26,7 @@
   margin: 0;
   padding: 0;
   font-family: "Open Sans";
+  caret-color: transparent;
 }
 
 a,
@@ -219,7 +220,8 @@ nav a {
   padding: 0 20px;
   color: var(--dsc-color-font-primary);
   border-radius: 4px;
-  border: 1px solid var(--dsc-color-card-border);
+  border: 1px solid var(--dsc-color-card-border);  
+  caret-color: auto;
 }
 
 .dsc-form-control:focus {

@@ -5,17 +5,13 @@ import { useParams } from "react-router-dom";
 import { OrderDTO } from "../../../models/order";
 import * as orderService from "../../../services/order-service";
 
-function Confirmation() {
+export default function Confirmation() {
   const params = useParams();
-
   const [order, setOrder] = useState<OrderDTO>();
 
   useEffect(() => {
     orderService.findByIdRequest(Number(params.orderId)).then((response) => {
       setOrder(response.data);
-      console.log(order?.items.map((x) => x.price));
-      console.log(order?.items.map((x) => x.quantity));
-      console.log(order?.items.map((x) => x.subTotal));
     });
   }, []);
 
@@ -38,7 +34,7 @@ function Confirmation() {
                 </div>
               </div>
               <div className="dsc-cart-item-right">
-                <h3>R$ {item.subTotal.toFixed(2)}</h3>
+                <h3>R$ {(item.quantity * item.price).toFixed(2)}</h3>
               </div>
             </div>
           ))}
@@ -59,5 +55,3 @@ function Confirmation() {
     </main>
   );
 }
-
-export default Confirmation;

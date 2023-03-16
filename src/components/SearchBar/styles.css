@@ -6,6 +6,7 @@
 
 .dsc-search-bar input {
   border: 1px solid var(--dsc-color-card-border);
+  caret-color: auto;
 }
 
 .dsc-search-bar button {
