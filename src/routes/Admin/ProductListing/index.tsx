@@ -1,4 +1,7 @@
 import "./styles.css";
+import editIcon from "../../../assets/edit.svg";
+import deleteIcon from "../../../assets/delete.svg";
+import product from "../../../assets/computer.png";
 
 function ProductListing() {
   return (
@@ -11,7 +14,9 @@ function ProductListing() {
         <form className="dsc-search-bar">
           <button type="submit">🔎︎</button>
           <input type="text" placeholder="Nome do produto" />
-          <button type="reset">🗙</button>
+          <button type="reset" className="dsc-search-bar-reset-btn">
+            🗙
+          </button>
         </form>
         <table className="dsc-table dsc-mb20 dsc-mt20">
           <thead>
@@ -26,25 +31,27 @@ function ProductListing() {
             <tr>
               <td className="dsc-tb576">341</td>
               <td>
-                <img
-                  className="dsc-product-listing-image"
-                  src="img/computer.png"
-                  alt="Computer"
-                />
+                <div className="dsc-center-image">
+                  <img
+                    className="dsc-product-listing-image"
+                    src={product}
+                    alt="Computer"
+                  />
+                </div>
               </td>
               <td className="dsc-tb768">R$ 5000,00</td>
               <td className="dsc-txt-left">Computador Gamer XT Plus Ultra</td>
               <td>
                 <img
                   className="dsc-product-listing-btn"
-                  src="img/edit.svg"
+                  src={editIcon}
                   alt="Editar"
                 />
               </td>
               <td>
                 <img
                   className="dsc-product-listing-btn"
-                  src="img/delete.svg"
+                  src={deleteIcon}
                   alt="Deletar"
                 />
               </td>
@@ -52,25 +59,27 @@ function ProductListing() {
             <tr>
               <td className="dsc-tb576">341</td>
               <td>
-                <img
-                  className="dsc-product-listing-image"
-                  src="img/computer.png"
-                  alt="Computer"
-                />
+                <div className="dsc-center-image">
+                  <img
+                    className="dsc-product-listing-image"
+                    src={product}
+                    alt="Computer"
+                  />
+                </div>
               </td>
               <td className="dsc-tb768">R$ 5000,00</td>
               <td className="dsc-txt-left">Computador Gamer XT Plus Ultra</td>
               <td>
                 <img
                   className="dsc-product-listing-btn"
-                  src="img/edit.svg"
+                  src={editIcon}
                   alt="Editar"
                 />
               </td>
               <td>
                 <img
                   className="dsc-product-listing-btn"
-                  src="img/delete.svg"
+                  src={deleteIcon}
                   alt="Deletar"
                 />
               </td>
@@ -78,110 +87,34 @@ function ProductListing() {
             <tr>
               <td className="dsc-tb576">341</td>
               <td>
-                <img
-                  className="dsc-product-listing-image"
-                  src="img/computer.png"
-                  alt="Computer"
-                />
+                <div className="dsc-center-image">
+                  <img
+                    className="dsc-product-listing-image"
+                    src={product}
+                    alt="Computer"
+                  />
+                </div>
               </td>
               <td className="dsc-tb768">R$ 5000,00</td>
               <td className="dsc-txt-left">Computador Gamer XT Plus Ultra</td>
               <td>
                 <img
                   className="dsc-product-listing-btn"
-                  src="img/edit.svg"
+                  src={editIcon}
                   alt="Editar"
                 />
               </td>
               <td>
                 <img
                   className="dsc-product-listing-btn"
-                  src="img/delete.svg"
-                  alt="Deletar"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="dsc-tb576">341</td>
-              <td>
-                <img
-                  className="dsc-product-listing-image"
-                  src="img/computer.png"
-                  alt="Computer"
-                />
-              </td>
-              <td className="dsc-tb768">R$ 5000,00</td>
-              <td className="dsc-txt-left">Computador Gamer XT Plus Ultra</td>
-              <td>
-                <img
-                  className="dsc-product-listing-btn"
-                  src="img/edit.svg"
-                  alt="Editar"
-                />
-              </td>
-              <td>
-                <img
-                  className="dsc-product-listing-btn"
-                  src="img/delete.svg"
-                  alt="Deletar"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="dsc-tb576">341</td>
-              <td>
-                <img
-                  className="dsc-product-listing-image"
-                  src="img/computer.png"
-                  alt="Computer"
-                />
-              </td>
-              <td className="dsc-tb768">R$ 5000,00</td>
-              <td className="dsc-txt-left">Computador Gamer XT Plus Ultra</td>
-              <td>
-                <img
-                  className="dsc-product-listing-btn"
-                  src="img/edit.svg"
-                  alt="Editar"
-                />
-              </td>
-              <td>
-                <img
-                  className="dsc-product-listing-btn"
-                  src="img/delete.svg"
-                  alt="Deletar"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="dsc-tb576">341</td>
-              <td>
-                <img
-                  className="dsc-product-listing-image"
-                  src="img/computer.png"
-                  alt="Computer"
-                />
-              </td>
-              <td className="dsc-tb768">R$ 5000,00</td>
-              <td className="dsc-txt-left">Computador Gamer XT Plus Ultra</td>
-              <td>
-                <img
-                  className="dsc-product-listing-btn"
-                  src="img/edit.svg"
-                  alt="Editar"
-                />
-              </td>
-              <td>
-                <img
-                  className="dsc-product-listing-btn"
-                  src="img/delete.svg"
+                  src={deleteIcon}
                   alt="Deletar"
                 />
               </td>
             </tr>
           </tbody>
         </table>
-        <div className="dsc-btn-next-page dsc-mt20">Carregar Mais</div>
+        <div className="dsc-btn dsc-mt20">Carregar Mais</div>
       </section>
     </main>
   );

@@ -2,7 +2,7 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { OrderDTO } from "../../../models/order";
+import { OrderDTO, OrderItemDTO } from "../../../models/order";
 import * as orderService from "../../../services/order-service";
 
 function Confirmation() {
@@ -11,7 +11,18 @@ function Confirmation() {
 
   useEffect(() => {
     orderService.findByIdRequest(Number(params.orderId)).then((response) => {
-      setOrder(response.data);
+      const newOrder = new OrderDTO();
+      newOrder.id = response.data.id;
+      newOrder.items = response.data.items.map(
+        (p: OrderItemDTO) =>
+          new OrderItemDTO(p.productId, p.quantity, p.name, p.price, p.imgUrl)
+      );
+      /* response.data.items.forEach((p: OrderItemDTO) => {
+        newOrder.items.push(
+          new OrderItemDTO(p.productId, p.quantity, p.name, p.price, p.imgUrl)
+        );
+      }); */
+      setOrder(newOrder);
     });
   }, []);
 
@@ -34,7 +45,7 @@ function Confirmation() {
                 </div>
               </div>
               <div className="dsc-cart-item-right">
-                <h3>R$ {(item.quantity * item.price).toFixed(2)}</h3>
+                <h3>R$ {item.subTotal.toFixed(2)}</h3>
               </div>
             </div>
           ))}
