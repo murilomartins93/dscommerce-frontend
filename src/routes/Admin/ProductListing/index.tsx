@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import editIcon from "../../../assets/edit.svg";
 import deleteIcon from "../../../assets/delete.svg";
 import Button from "../../../components/Button";
+import DialogInfo from "../../../components/DialogInfo";
+import DialogConfirmation from "../../../components/DialogConfirmation";
 import SearchBar from "../../../components/SearchBar";
 import * as productService from "../../../services/product-service";
-import DialogInfo from "../../../components/DialogInfo";
 
 type QueryParams = {
   page: number;
@@ -18,6 +19,11 @@ function ProductListing() {
   const [dialogInfoData, setDialogInfoData] = useState({
     visible: false,
     message: "Operação com sucesso!",
+  });
+
+  const [dialogConfirmationData, setDialogConfirmationData] = useState({
+    visible: false,
+    message: "Tem certeza?",
   });
 
   const [isLastPage, setIsLastPage] = useState(false);
@@ -55,8 +61,13 @@ function ProductListing() {
     setDialogInfoData({ ...dialogInfoData, visible: false });
   }
 
+  function handleDialogConfirmationAnswer(answer: boolean) {
+    console.log("Resposta", answer);
+    setDialogConfirmationData({ ...dialogConfirmationData, visible: false });
+  }
+
   function handleDeleteClick() {
-    setDialogInfoData({ ...dialogInfoData, visible: true });
+    setDialogConfirmationData({ ...dialogConfirmationData, visible: true });
   }
 
   return (
@@ -122,6 +133,12 @@ function ProductListing() {
         <DialogInfo
           message={dialogInfoData.message}
           onDialogClose={handleDialogInfoClose}
+        />
+      ) : null}
+      {dialogConfirmationData.visible ? (
+        <DialogConfirmation
+          message={dialogConfirmationData.message}
+          onDialogAnswer={handleDialogConfirmationAnswer}
         />
       ) : null}
     </main>

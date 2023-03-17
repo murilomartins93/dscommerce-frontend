@@ -399,4 +399,8 @@ nav h1 {
 
 .dsc-dialog-btn-container {
   width: 100%;
+  min-width: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
