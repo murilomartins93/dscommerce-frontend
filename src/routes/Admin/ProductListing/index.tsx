@@ -7,6 +7,7 @@ import deleteIcon from "../../../assets/delete.svg";
 import Button from "../../../components/Button";
 import SearchBar from "../../../components/SearchBar";
 import * as productService from "../../../services/product-service";
+import DialogInfo from "../../../components/DialogInfo";
 
 type QueryParams = {
   page: number;
@@ -14,6 +15,11 @@ type QueryParams = {
 };
 
 function ProductListing() {
+  const [dialogInfoData, setDialogInfoData] = useState({
+    visible: false,
+    message: "Operação com sucesso!",
+  });
+
   const [isLastPage, setIsLastPage] = useState(false);
 
   const [products, setProducts] = useState<ProductDTO[]>([]);
@@ -43,6 +49,14 @@ function ProductListing() {
 
   function handleNextPageClick() {
     setQueryParams({ ...queryParams, page: queryParams.page + 1 });
+  }
+
+  function handleDialogInfoClose() {
+    setDialogInfoData({ ...dialogInfoData, visible: false });
+  }
+
+  function handleDeleteClick() {
+    setDialogInfoData({ ...dialogInfoData, visible: true });
   }
 
   return (
@@ -91,6 +105,7 @@ function ProductListing() {
                     className="dsc-product-listing-btn"
                     src={deleteIcon}
                     alt="Deletar"
+                    onClick={handleDeleteClick}
                   />
                 </td>
               </tr>
@@ -103,6 +118,12 @@ function ProductListing() {
           </div>
         ) : null}
       </section>
+      {dialogInfoData.visible ? (
+        <DialogInfo
+          message={dialogInfoData.message}
+          onDialogClose={handleDialogInfoClose}
+        />
+      ) : null}
     </main>
   );
 }
