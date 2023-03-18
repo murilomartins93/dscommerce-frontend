@@ -37,10 +37,7 @@ function Login() {
   function handleSubmit(event: any) {
     event.preventDefault();
     authService
-      .loginRequest({
-        username: formData.username.value,
-        password: formData.password.value,
-      })
+      .loginRequest(forms.toValues(formData))
       .then((response) => {
         const token = response.data.access_token;
         authService.saveAccessToken(token);
