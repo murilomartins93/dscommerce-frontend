@@ -49,6 +49,10 @@ function ProductListing() {
       .catch(() => navigate("/admin/home"));
   }, [queryParams]);
 
+  function handleNewProductClick() {
+    navigate("/admin/products/create");
+  }
+
   function handleSearch(searchText: string) {
     setProducts([]);
     setQueryParams({ ...queryParams, page: 0, name: searchText });
@@ -92,8 +96,10 @@ function ProductListing() {
     <main>
       <section id="product-listing-section" className="dsc-container">
         <h2 className="dsc-section-title dsc-mb20">Cadastro de produtos</h2>
-        <div className="dsc-btn-page-container">
-          <div className="dsc-btn dsc-mb20">Novo</div>
+        <div className="dsc-btn-page-container dsc-mb20">
+          <div onClick={handleNewProductClick}>
+            <Button text="Novo" />
+          </div>
         </div>
         <SearchBar onSearch={handleSearch} />
         <table className="dsc-table dsc-mb20 dsc-mt20">
