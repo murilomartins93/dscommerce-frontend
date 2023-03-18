@@ -19,11 +19,15 @@ function ProductForm() {
       placeholder: "Nome",
     },
     price: {
-      value: "",
+      value: "20",
       id: "price",
       name: "price",
       type: "number",
       placeholder: "Preço",
+      validation: function (valor: any) {
+        return Number(valor) > 0;
+      },
+      message: "Favor informar um valor positivo"
     },
     imgUrl: {
       value: "",
@@ -35,6 +39,10 @@ function ProductForm() {
   });
 
   useEffect(() => {
+
+    const obj = forms.validate(formData, "name");
+    console.log(obj);
+    
     if (isEditing) {
       productService.findById(Number(params.productId)).then((response) => {
         const newFormData = forms.updateAll(formData, response.data);
