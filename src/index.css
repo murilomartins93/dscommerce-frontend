@@ -395,6 +395,7 @@ nav h1 {
   font-size: 20px;
   color: var(--dsc-color-font-primary);
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .dsc-dialog-btn-container {
@@ -403,4 +404,9 @@ nav h1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+
+
+.dsc-dialog-btn {
+  width: 100%;
 }

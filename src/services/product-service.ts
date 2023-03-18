@@ -1,8 +1,12 @@
 import { AxiosRequestConfig } from "axios";
 import { requestBackend } from "../utils/requests";
 
-export function findPageRequest(page: number, name: string, size = 12, sort="name,desc") {
-  
+export function findPageRequest(
+  page: number,
+  name: string,
+  size = 12,
+  sort = "name,desc"
+) {
   const config: AxiosRequestConfig = {
     method: "GET",
     url: "/products",
@@ -10,13 +14,23 @@ export function findPageRequest(page: number, name: string, size = 12, sort="nam
       page: page,
       name,
       size: size,
-      sort
-    }
+      sort,
+    },
   };
 
   return requestBackend(config);
 }
 
 export function findById(id: number) {
-  return requestBackend({ url: `/products/${id}`});
+  return requestBackend({ url: `/products/${id}` });
+}
+
+export function deleteById(id: number) {
+  const config: AxiosRequestConfig = {
+    method: "DELETE",
+    url: `/products/${id}`,
+    withCredentials: true,
+  };
+
+  return requestBackend(config);
 }
