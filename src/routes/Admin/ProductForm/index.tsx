@@ -19,7 +19,7 @@ function ProductForm() {
       placeholder: "Nome",
     },
     price: {
-      value: "20",
+      value: "",
       id: "price",
       name: "price",
       type: "number",
@@ -27,7 +27,7 @@ function ProductForm() {
       validation: function (valor: any) {
         return Number(valor) > 0;
       },
-      message: "Favor informar um valor positivo"
+      message: "Favor informar um valor positivo",
     },
     imgUrl: {
       value: "",
@@ -39,10 +39,6 @@ function ProductForm() {
   });
 
   useEffect(() => {
-
-    const obj = forms.validate(formData, "name");
-    console.log(obj);
-    
     if (isEditing) {
       productService.findById(Number(params.productId)).then((response) => {
         const newFormData = forms.updateAll(formData, response.data);
@@ -52,9 +48,11 @@ function ProductForm() {
   }, []);
 
   function handleInputChange(event: any) {
-    const value = event.target.value;
     const name = event.target.name;
-    setFormData(forms.update(formData, name, value));
+    const value = event.target.value;
+    const dataUpdated = forms.update(formData, name, value);
+    const dataValidated = forms.validate(dataUpdated, name);
+    setFormData(dataValidated);
   }
 
   return (
@@ -70,6 +68,7 @@ function ProductForm() {
                   className="dsc-form-control"
                   onChange={handleInputChange}
                 />
+                <div className="dsc-form-error">{formData.name.message}</div>
               </div>
               <div>
                 <FormInput
@@ -77,6 +76,7 @@ function ProductForm() {
                   className="dsc-form-control"
                   onChange={handleInputChange}
                 />
+                <div className="dsc-form-error">{formData.price.message}</div>
               </div>
               <div>
                 <FormInput

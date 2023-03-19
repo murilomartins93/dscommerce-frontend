@@ -227,7 +227,7 @@ nav h1 {
   color: var(--dsc-color-font-placeholder);
 }
 
-.dsc-input-error {
+.dsc-form-control[data-invalid="true"] {
   border: 1px solid var(--dsc-color-error);
 }
 
@@ -235,6 +235,11 @@ nav h1 {
   color: var(--dsc-color-error);
   font-size: 12px;
   padding-left: 4px;
+  display: none;
+}
+
+.dsc-form-control[data-invalid="true"] ~ div {
+  display: unset;
 }
 
 .dsc-select:invalid {
@@ -405,7 +410,6 @@ nav h1 {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
-
 
 .dsc-dialog-btn {
   width: 100%;
