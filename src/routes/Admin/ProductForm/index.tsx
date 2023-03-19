@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import FormInput from "../../../components/FormInput";
 import * as forms from "../../../utils/forms";
 import * as productService from "../../../services/product-service";
+import FormTextArea from "../../../components/FormTextArea";
 
 function ProductForm() {
   const params = useParams();
@@ -39,6 +40,17 @@ function ProductForm() {
       name: "imgUrl",
       type: "text",
       placeholder: "Imagem",
+    },
+    description: {
+      value: "",
+      id: "description",
+      name: "description",
+      type: "text",
+      placeholder: "Descrição",
+      validation: function (value: string) {
+        return /^.{10,}$/.test(value);
+      },
+      message: "A descrição deve ter pelo menos 10 caracteres",
     },
   });
 
@@ -94,7 +106,7 @@ function ProductForm() {
                   onChange={handleInputChange}
                 />
               </div>
-              {/* <div>
+              {/*  <div>
                 <select className="dsc-form-control dsc-select" required>
                   <option value="" disabled selected>
                     Categorias
@@ -102,13 +114,16 @@ function ProductForm() {
                   <option value="1">Valor 1</option>
                   <option value="2">Valor 2</option>
                 </select>
-              </div>
-              <div>
-                <textarea
-                  className="dsc-form-control dsc-textarea"
-                  placeholder="Descrição"
-                ></textarea>
               </div> */}
+              <div>
+                <FormTextArea
+                  {...formData.description}
+                  className="dsc-form-control dsc-textarea"
+                  onTurnDirty={handleTurnDirty}
+                  onChange={handleInputChange}
+                />
+                <div className="dsc-form-error">{formData.description.message}</div>
+              </div>
             </div>
             <div className="dsc-product-form-buttons">
               <Link to="/admin/products">
