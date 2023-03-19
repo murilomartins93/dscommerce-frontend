@@ -14,8 +14,8 @@ function FormInput(props: any) {
 
   return (
     <input
-      onBlur={handleBlur}
       {...inputProps}
+      onBlur={handleBlur}
       data-invalid={invalid}
       data-dirty={dirty}
     />
