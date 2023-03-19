@@ -227,7 +227,7 @@ nav h1 {
   color: var(--dsc-color-font-placeholder);
 }
 
-.dsc-form-control[data-invalid="true"] {
+.dsc-form-control[data-dirty="true"][data-invalid="true"] {
   border: 1px solid var(--dsc-color-error);
 }
 
@@ -238,7 +238,7 @@ nav h1 {
   display: none;
 }
 
-.dsc-form-control[data-invalid="true"] ~ div {
+.dsc-form-control[data-dirty="true"][data-invalid="true"] ~ div {
   display: unset;
 }
 
