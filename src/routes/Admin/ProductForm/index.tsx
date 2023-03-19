@@ -2,6 +2,7 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { CategoryDTO } from "../../../models/category";
+import { selectStyles } from "../../../utils/select";
 import FormInput from "../../../components/FormInput";
 import FormSelect from "../../../components/FormSelect";
 import FormTextArea from "../../../components/FormTextArea";
@@ -137,12 +138,19 @@ function ProductForm() {
                   getOptionValue={(obj: any) => String(obj.id)}
                   onTurnDirty={handleTurnDirty}
                   onChange={(obj: any) => {
-                    const newFormData = forms.updateAndValidate(formData, "categories", obj);
+                    const newFormData = forms.updateAndValidate(
+                      formData,
+                      "categories",
+                      obj
+                    );
                     setFormData(newFormData);
                   }}
-                  className="dsc-form-control"
+                  className="dsc-form-control dsc-form-select-container"
+                  styles={selectStyles}
                 />
-                <div className="dsc-form-error">{formData.categories.message}</div>
+                <div className="dsc-form-error">
+                  {formData.categories.message}
+                </div>
               </div>
               <div>
                 <FormTextArea
@@ -151,7 +159,9 @@ function ProductForm() {
                   onTurnDirty={handleTurnDirty}
                   onChange={handleInputChange}
                 />
-                <div className="dsc-form-error">{formData.description.message}</div>
+                <div className="dsc-form-error">
+                  {formData.description.message}
+                </div>
               </div>
             </div>
             <div className="dsc-product-form-buttons">
