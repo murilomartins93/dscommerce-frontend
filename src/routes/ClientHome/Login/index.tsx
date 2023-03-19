@@ -50,9 +50,13 @@ function Login() {
   }
 
   function handleInputChange(event: any) {
-    const value = event.target.value;
-    const name = event.target.name;
-    setFormData(forms.update(formData, name, value));
+    setFormData(
+      forms.updateAndValidate(formData, event.target.name, event.target.value)
+    );
+  }
+
+  function handleTurnDirty(name: string) {
+    setFormData(forms.dirtyAndValidate(formData, name));
   }
 
   return (
@@ -67,6 +71,7 @@ function Login() {
                   {...formData.username}
                   className="dsc-form-control"
                   autoComplete="username"
+                  onTurnDirty={handleTurnDirty}
                   onChange={handleInputChange}
                 />
                 <div className="dsc-form-error"></div>
@@ -76,6 +81,7 @@ function Login() {
                   {...formData.password}
                   className="dsc-form-control"
                   autoComplete="current-password"
+                  onTurnDirty={handleTurnDirty}
                   onChange={handleInputChange}
                 />
               </div>
