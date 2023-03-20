@@ -11,6 +11,8 @@ function Login() {
 
   const { setContextTokenPayload } = useContext(ContextToken);
 
+  const [submitResponseFail, setsubmitResponseFail] = useState(false);
+
   const [formData, setFormData] = useState<any>({
     username: {
       value: "",
@@ -36,6 +38,13 @@ function Login() {
 
   function handleSubmit(event: any) {
     event.preventDefault();
+    const formDataValidated = forms.dirtyAndValidateAll(formData);
+    if (forms.hasAnyInvalid(formDataValidated)) {
+      setFormData(formDataValidated);
+      setsubmitResponseFail(false);
+      return;
+    }
+
     authService
       .loginRequest(forms.toValues(formData))
       .then((response) => {
@@ -44,8 +53,8 @@ function Login() {
         setContextTokenPayload(authService.getAccessTokenPayload());
         navigate("/cart");
       })
-      .catch((error) => {
-        console.log("Erro no login", error);
+      .catch(() => {
+        setsubmitResponseFail(true);
       });
   }
 
@@ -74,7 +83,9 @@ function Login() {
                   onTurnDirty={handleTurnDirty}
                   onChange={handleInputChange}
                 />
-                <div className="dsc-form-error">{formData.username.message}</div>
+                <div className="dsc-form-error">
+                  {formData.username.message}
+                </div>
               </div>
               <div>
                 <FormInput
@@ -84,9 +95,18 @@ function Login() {
                   onTurnDirty={handleTurnDirty}
                   onChange={handleInputChange}
                 />
-                <div className="dsc-form-error">{formData.password.message}</div>
+                <div className="dsc-form-error">
+                  {formData.password.message}
+                </div>
               </div>
             </div>
+            {
+              submitResponseFail ? 
+              <div className="dsc-form-global-error">
+                Usuário ou senha inválidos
+              </div> 
+              : null
+            }
             <div className="dsc-login-form-buttons dsc-mt20">
               <button type="submit" className="dsc-btn">
                 Entrar

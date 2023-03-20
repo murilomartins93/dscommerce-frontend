@@ -21,8 +21,7 @@ function ProductDetails() {
       .then((response) => {
         setProduct(response.data);
       })
-      .catch((error) => {
-        console.log(error.response.data);
+      .catch(() => {
         navigate("/");
       });
   }, []);
